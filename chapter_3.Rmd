@@ -112,3 +112,34 @@ ymd_hms("2020-03-18 15:39:53", tz="Asia/Taipei"),
 ymd_hms("2020-03-18 15:39:53", tz="Asia/Taipei"))
 studentTime
 ```
+```{r}
+vectorExample <- c(2, 6, 7)
+listExample <- list(2, 6, 7)
+
+print(vectorExample)
+print(listExample)
+```
+
+```{r}
+library(lubridate)
+`小明交易1` <- list(
+  ymd_hms("2020-03-31T13:40:55Z"), # Date/Time class
+  "一芳", # character
+  2, # numeric
+  "水果茶" # character
+)
+print(`小明交易1`)
+```
+
+```{r}
+# list含兩個vectors
+`小明108學年課表A` <- list(
+  c("108-1","高級會計學","高等統計學"),
+  c("108-2","食在拉丁美洲")
+)
+print(`小明108學年課表A`)
+```
+
+```{r}
+
+```
