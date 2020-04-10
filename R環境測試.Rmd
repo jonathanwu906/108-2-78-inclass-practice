@@ -1,9 +1,4 @@
 ---
-title: "homework-example"
-output: html_document
-params:
-  studentName: "吳宗霖"
-  studentID: "410873060"
 ---
 
 ```{r setup, include=FALSE}
@@ -28,4 +23,13 @@ You can also embed plots, for example:
 plot(pressure)
 ```
 
-Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that gen erated the plot.
+Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
+
+```{r}
+source("https://www.dropbox.com/s/mk7bxvu6a3lxf79/studentEnvironmentReport.R?dl=1",print.eval = T)
+```
+
+```{r}
+source("https://www.dropbox.com/s/cqg0h2i5sfxsh1f/studentEnvironmentReport.R?dl=1",print.eval = T)
+```
+
