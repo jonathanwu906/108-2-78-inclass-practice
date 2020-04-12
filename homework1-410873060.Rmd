@@ -233,10 +233,10 @@ source("https://www.dropbox.com/s/xtge2ghfb7dhple/108-2-hw1-4.R?dl=1")
 
 ```{r ans5c, eval=F}
 yy <- 2020
-mm <- "Mar."
+mm <- 03
 dd <- 15
 event_list <- list(
-  time= lubridate::ymd("2020-3-15"),
+  time= lubridate::ymd(paste0(yy, "-", mm, "-", dd)),
   list(
     name="小明",
     `是否完成`=c(TRUE),
