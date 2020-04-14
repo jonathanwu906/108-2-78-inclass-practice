@@ -88,7 +88,6 @@ List of 2
 
 ```{r ans31}
 course <- list(
-  list(
     approve = c(TRUE),
     course_info = list(
       coursename = "會計學",
@@ -101,9 +100,8 @@ course <- list(
           classroom = "商2F05")
       )
     )
-  )  
 )
-print(course)
+str(course)
 ```
 
 ### 3.2
