@@ -295,6 +295,22 @@ weatherforecast <- list(
 )
 weatherforecast
 ```
+```{r}
+vectorExample <- c("小明", "小英", "大熊")
+length(vectorExample)
+```
+
+```{r}
+vectorExample[[3]]
+```
+
+
+
+
+
+
+
+
 
 
 

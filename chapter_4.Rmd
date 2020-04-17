@@ -148,13 +148,24 @@ econFemaleOnly <- gender[econOnly][c(T,T,F)];econFemaleOnly
 names[c(econOnly)][c(T,T,F)]
 ```
 
+```{r}
+get1 <- listExample[["學期"]]
+get2 <- listExample["學期"]
+```
 
+```{r}
+str(get1)
+```
 
+```{r}
+str((get2))
+```
 
-
-
-
-
+```{r}
+get1[["108-1"]][[1]][["teacher"]]
+listExample[["學期"]]$`108-1`[[1]]$teacher
+listExample["學期"][[1]][["108-1"]][[1]]$teacher
+```
 
 
 
