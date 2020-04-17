@@ -118,8 +118,7 @@ Pikachu <- Gamemaster[[1]][[27]]
 提示:
 記得class怎麼改嗎?vector內容請按照「atk、def、hp」這樣的順序喔。
 ```{r ans32}
-as.numeric(Pikachu$baseStats[c(1,2,3)])
-Pikachu_stats <- Pikachu$baseStats[c(1,2,3)]
+Pikachu_stats <- c(as.numeric(Pikachu$baseStats[c(1,2,3)]))
 ```
 
 ### 3.3 特定物件改寫&特定物件取出
