@@ -49,13 +49,16 @@ str_extract_all(twoNames, pattern)
 執行以下程式會得到金庸小說《天龍八部》第一本書的資料semiGodsSemiDevils，透過`str()`你可以看到資料結構，其中data下面有section（回數）和text（內文）：
 ```{r data2}
 jsonlite::fromJSON("https://www.dropbox.com/s/kv0xa0spa6q5l7q/semiGodsSemiDevils.json?dl=1") -> semiGodsSemiDevils
+
+str(semiGodsSemiDevils)
 ```
 
 ### 2.1
 取出回數為"P2"的內文存在context_picked (class character). 
 ```{r ans21}
 # context_picked
-context_picked
+context_picked <- semiGodsSemiDevils[[5]][[1]][["text"]][[3]]
+print(context_picked)
 ```
 
 ### 2.2
@@ -73,21 +76,27 @@ List of 1
 
 ```{r ans22}
 # context_picked_split
+context_picked_split <- str_split(context_picked, "\\s{2}")
 ```
 
 ### 2.3
-段譽在內文被以"段譽、段兄、段兄弟、段大哥、段相公、段君，及姓段的小子"稱呼過，請使用`str_extract_all()`粹取出context_picked_split底下各段中段譽被提到的所有稱呼, 並存在mention_duan （class list, of 214 elements）裡。（小心context_picked_split要進下一層才會是各段的字串向量）
+段譽在內文被以"段譽、段兄、段兄弟、段大哥、段相公、段君，及姓段的小子"稱呼過，請使用`str_extract_all()`粹取出context_picked_split底下各段中段譽被提到的所有稱呼, 並存在mention_duan （class list of 214 elements）裡。（小心context_picked_split要進下一層才會是各字串向量）
 
 可能有用的提示: 出現0或1次的複製次數是用?號接在文字的後面。
 
 ```{r ans23}
 # mention_duan
+mention_duan <- str_extract_all(
+ context_picked_split[[1]], "(段(譽|兄|兄弟|大哥|相公|君)|姓段的小子)" 
+)
 ```
 
 ### 2.4
 使用`unlist()`函數將mention_duan轉成字串後用`table()`函數統計段譽各稱號被提到的次數，並將table結果存在table_duan (class table)。
 ```{r ans24}
 # table_duan
+table_duan <- table(unlist(mention_duan))
+print(table_duan)
 ```
 
 
