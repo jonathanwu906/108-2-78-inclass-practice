@@ -916,25 +916,101 @@ jsonlite::fromJSON("https://data.ntpc.gov.tw/od/data/api/EDC3AD26-8AE7-4916-A00B
 str(garbageRoutes)
 ```
 
+```{r}
+install.packages("dplyr")
+library(purrr)
+```
 
+```{r}
+example <- list(
+  name=c("小明","小花","小新","美美"),
+  height=c(175,166,170,160),
+  weight=c(77,NA,60,43),
+  birthday=lubridate::ymd(c("1998-03-11","1999-12-22","1995-08-22","2001-10-10")),
+  hobby=c("美食 旅遊","旅遊 時尚","3C 美食","音樂 旅遊"),
+  residence=c("Taipei","New Taipei","Taichung","Kaohsiung"),
+  allowance=factor(c("0-1000","1001-2000","2000+","1001-2000")),
+  bloodType=c("A","B","B","O")
+)
+```
 
+```{r}
+pick_小新 <- example$name == "小新"
+data_selected <- 
+  list(
+    name=example$name[pick_小新],
+    weight=example$weight[pick_小新],
+    height=example$height[pick_小新],
+    hobby=example$hobby[pick_小新],
+    residence=example$residence[pick_小新],
+    allowance=example$allowance[pick_小新],
+    bloodType=example$bloodType[pick_小新]
+  )
+```
 
+```{r}
+map(example, ~.x[pick_小新]) -> 
+  data_selected 
+  
+data_selected
+```
 
+```{r}
+jsonlite::fromJSON("https://www.dropbox.com/s/6252gbdnv9owljm/dance.json?dl=1", simplifyDataFrame = F) -> dance
+```
 
+```{r}
+map(dance, ~.x$title) ->
+  list_titles
 
+View(list_titles)
+```
 
+```{r}
+# 記載第一個表演的所有場次訊息
+dance[[1]]$showInfo
+str(dance[[1]]$showInfo)
+# 計算第一個表演有幾個場次
+length(dance[[1]]$showInfo)
+# 計算第二個表演有幾個場次
+length(dance[[2]]$showInfo)
+```
 
+```{r}
+map(dance[[4]]$showInfo, ~ .x$time) ->
+  
+list_showTimes_dance4
+```
 
+```{r}
+map(dance[[8]]$showInfo, ~ .x[c("time", "location")]) -> list_showTimesLocation_dance8
+print(list_showTimesLocation_dance8)
+```
 
+```{r}
+jsonlite::fromJSON("https://data.ntpc.gov.tw/api/datasets/0EE4E6BF-CEE6-4EC8-8FE1-71F544015127/json/preview", simplifyDataFrame = F) -> busRoutes
+```
 
+```{r}
+busRoutes[[1]][c("Id", "providerId", "providerName", "nameZh")]
+busRoutes[[2]][c("Id", "providerId", "providerName", "nameZh")]
+map(busRoutes, ~ .x[c("Id", "providerId", "providerName", "nameZh")])
+```
 
+```{r}
+jsonlite::fromJSON("https://opendata.cwb.gov.tw/fileapi/v1/opendataapi/F-C0032-001?Authorization=rdec-key-123-45678-011121314&format=JSON") ->
+  weather_next36hours
+```
 
+```{r}
+weather_next36hours$cwbopendata$dataset$location$locationName
 
+map(weather_next36hours$cwbopendata$dataset$location$weatherElement, ~ .x$elementName)
 
+map(weather_next36hours$cwbopendata$dataset$location$weatherElement, ~ .x$time[[1]][c("startTime", "endTime")])
 
-
-
-
+map(weather_next36hours$cwbopendata$dataset$location$weatherElement, ~ .x$time[[1]]$parameter$parameterValue)
+```
 
 
 
